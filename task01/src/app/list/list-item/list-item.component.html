@@ -1,6 +1,9 @@
 <div class="item"
 		 focus-highlight>
 	<span (click)="handleClick(item.id)">{{item.name}}</span>
-	<span>edit</span>
-	<span>delete</span>
+	<div>
+		<span (click)="openEditMode(item.id)"><i class="fa fa-pencil  control-button" aria-hidden="true"></i> </span>
+		<span (click)="deleteItem(item.id)"><i class="fa fa-trash control-button" aria-hidden="true"></i> </span>
+	</div>
 </div>
+<confirm-dialog [isShow]="isShowDialog" [id]="deletedItemId" (closeModal)="closeModal($event)"></confirm-dialog>

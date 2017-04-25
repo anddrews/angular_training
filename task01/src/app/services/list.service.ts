@@ -5,43 +5,43 @@ const mocItems = `[
     {
         "id": "1",
         "name": "Ivan",
-        "sex": "man",
+        "sex": "mail",
         "birthday": "05-05-2010"
     },
     {
         "id": "2",
         "name": "Vovan",
-        "sex": "man",
+        "sex": "mail",
         "birthday": "05-05-2010"
     },
     {
         "id": "3",
         "name": "Piotr",
-        "sex": "man",
+        "sex": "mail",
         "birthday": "05-05-2010"
     },
     {
         "id": "4",
-       "name": "Alex",
-        "sex": "man",
+        "name": "Alex",
+        "sex": "mail",
         "birthday": "05-05-2010"
     },
     {
         "id": "5",
         "name": "Alexa",
-        "sex": "woman",
+        "sex": "femail",
         "birthday": "05-05-2010"
     },
     {
         "id": "6",
         "name": "Mary",
-        "sex": "woman",
+        "sex": "femail",
         "birthday": "05-05-2010"
     },
     {
         "id": "7",
         "name": "Ingrid",
-        "sex": "woman",
+        "sex": "femail",
         "birthday": "05-05-2010"
     }
 ]`;
@@ -49,12 +49,12 @@ const mocItems = `[
 @Injectable()
 export class ItemService {
     items: Item[];
-    currentId: number;
     currentItem: Item;
+    isEditMode: boolean = false;
 
     constructor () {
         this.items = JSON.parse(mocItems);
-        this.currentItem = this.items[0];
+        this.currentItem = new Item();
     }
 
     getList() {
@@ -62,12 +62,35 @@ export class ItemService {
     }
 
     setCurrentItem(id: number) {
-        console.log('current item is' + id);
-        this.currentId = id;
-        this.currentItem = this.items.filter( item => item.id == this.currentId)[0] || this.items[0];
+        this.currentItem = this.items.filter( item => item.id == id)[0];
     }
 
     getCurrentItem () {
-        return this.items.filter( item => item.id == this.currentId)[0];
+        return this.currentItem;
     }
+
+    openEditMode(id: number) {
+        this.currentItem = this.items.filter( item => item.id == id)[0];
+        this.isEditMode = true;
+    }
+    endEditMode(item?: Item) {
+        if (item) {
+            const tmp = this.items;
+            this.items.forEach( (el, index) => { if(el.id == item.id) {
+                tmp[index] = item;
+            }});
+        }
+        this.isEditMode = false;
+    }
+
+    deleteItem(id: number) {
+        this.items = this.items.filter(item => item.id != id);
+    }
+
+    createNewItem(){
+        this.items.push(new Item());
+        this.currentItem = this.items[this.items.length - 1];
+        this.isEditMode = true;
+    }
+
 }

@@ -1,4 +1,5 @@
 import {Component, Output, EventEmitter} from '@angular/core';
+import { ItemService } from '../../services';
 
 @Component({
     selector: 'list-header',
@@ -9,7 +10,14 @@ import {Component, Output, EventEmitter} from '@angular/core';
 export class ListHeaderComponent {
     @Output() filterChanged = new EventEmitter();
     @Output() addItem = new EventEmitter();
+
+    constructor(private itemService: ItemService) {}
+
     handleFilterChange(value: string) {
         this.filterChanged.emit(value);
+    }
+
+    createNewItem() {
+        this.itemService.createNewItem();
     }
 }

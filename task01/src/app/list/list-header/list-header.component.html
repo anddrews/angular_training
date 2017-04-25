@@ -1,4 +1,5 @@
-<div>
+<div class="list-header">
 	<input type="text" #filter (keyup)="handleFilterChange(filter.value)"/>
-	<span>add</span>
+	<i class="fa fa-search" aria-hidden="true"></i>
+	<span (click)="createNewItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
 </div>

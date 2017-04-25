@@ -1,6 +1,6 @@
 
 export class Item {
-    id: number;
+    id: number = Date.now();
     name: string;
     sex: string;
     birthday: Date;

@@ -1,0 +1,17 @@
+.modal-wrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba( 0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  .modal-body {
+    background-color: #ffffff;
+    margin: auto;
+    text-align: center;
+    height: 150px;
+    width: 400px;
+  }
+}

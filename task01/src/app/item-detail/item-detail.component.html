@@ -1,0 +1,30 @@
+<div *ngIf="item.name && !isEdit" class="item-wrapper">
+	<div>
+		<span>Name</span>
+		<span>{{item.name}}</span>
+	</div>
+	<div>
+		<span>Sex</span>
+		<span>{{item.sex}}</span>
+	</div>
+	<div>
+		<span>Birthday</span>
+		<span>{{item.birthday}}</span>
+	</div>
+</div>
+<div *ngIf="item && isEdit" class="item-wrapper">
+	<div>
+		<span>Name</span>
+		<input type="text"  [(ngModel)]="item.name" />
+	</div>
+	<div>
+		<span>Sex</span>
+		<input type="text" [(ngModel)]="item.sex" />
+	</div>
+	<div>
+		<span>Birthday</span>
+		<input type="date"  [(ngModel)]="item.birthday" />
+	</div>
+	<button (click)="saveItem()">Save</button>
+	<button (click)="cancelEdit()">Cancel</button>
+</div>
