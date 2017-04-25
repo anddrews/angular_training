@@ -1,0 +1,5 @@
+<list-header (filterChanged)="filterChanged($event)" (addItem)="addItem()"></list-header>
+<list-item
+		*ngFor="let item of items | filterByName : filter  "
+		[item]="item">
+</list-item>
